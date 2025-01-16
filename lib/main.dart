@@ -7,6 +7,9 @@ import 'package:swipezone/screens/planning_page.dart';
 import 'package:swipezone/screens/select_page.dart';
 import 'package:swipezone/theme/theme.dart';
 import 'package:swipezone/theme/theme_provider.dart';
+import 'package:swipezone/repositories/models/location.dart';
+
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -53,13 +56,17 @@ final GoRouter _router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: 'planningpage',
-          builder: (BuildContext context, GoRouterState state) {
-            return const PlanningPage(
-              title: "PlanningPage",
+          path: '/planningpage',
+          builder: (context, state) {
+            final selectedLocations = state.extra as List<Location>;
+            return PlanningPage(
+              title: 'Planning',
+              selectedLocations: selectedLocations,
             );
           },
         ),
+
+
         GoRoute(
           path: 'selectpage',
           builder: (BuildContext context, GoRouterState state) {
